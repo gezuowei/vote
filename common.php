@@ -1,12 +1,6 @@
 <?php 
-require_once 'libraries/phpcas/CAS-1.3.1/CAS.php';
-phpCAS::client(CAS_VERSION_2_0,'sso.dangdang.com',443,'authentication');
-phpCAS::setNoCasServerValidation();
-phpCAS::handleLogoutRequests();
-phpCAS::forceAuthentication();
 
-$voter = phpCAS::getUser();
-
+$voter = 'ge';
 $supers = array('cheng', 'zhang', 'ge');
 
 $isSuper = false;

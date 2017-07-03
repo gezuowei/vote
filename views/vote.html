@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adsystem &middot; vote</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/js/responsive-nav.min.js"></script>
+  </head>
+  <body>
+    <div role="navigation" id="foo" class="nav-collapse">
+      <ul>
+        <li><a href="/index.php">showtime简介</a></li>
+        <li class="active"><a href="/vote.php">投票</a></li>
+        <?php if($isSuper) { ?>
+        <li><a href="/addShare.php">新增分享</a></li>
+        <?php }?>
+      </ul>
+    </div>
+
+    <div role="main" class="main">
+      <a href="#nav" class="nav-toggle">Menu</a>
+      <?php if(!empty($date2Lectors)) { ?>
+      <form action="" method="post" class="vote">
+      <label>开讲日期: </label> 
+        <select name="date" id="date">
+          <?php foreach($date2Lectors as $date=>$lectors) { ?>
+          <option value="<?=$date?>"><?=$date?></option>
+          <?php }?>
+        </select><br/>
+      <label>主讲人: &nbsp;&nbsp;&nbsp;</label> 
+        <select name="lector" id="lector">
+          <?php $lectors = array_shift($date2Lectors); foreach($lectors as $lector) { ?>
+          <option value="<?=$lector?>"><?=$lector?></option>
+          <?php }?>
+        </select><br/>
+      <label>最终得分: </label> 
+      <input type="text" name="score"> </input><br/>
+      <input hidden name="method" value="vote" />
+      <input style="margin-top:10px;" type="submit" value="提交" />
+      </form>
+      <p>打分原则:<br/>      1、材料充足度：认为演讲人材料准备充分，对演讲题目各方面材料准备得当，总分30分。<br/>      2、讲解流畅性：认为演讲人演练足够充分，在演讲过程中没有太多卡壳，总分30分。<br/>      3、气氛把握：认为演讲人可以把所有人带入演讲内容，整个过程都听得聚精会神：总分30分。<br/>      4、故事幽默性：可以用故事把原理讲得深入浅出，风趣幽默，或者振奋人心：总分10分。<br/></p>
+      <hr/>
+      <?php }?>
+      <h2>投票历史 </h2>
+
+      <?php foreach($lists as $key=> $list) { ?>
+        <p class="intro"><?=$key?>、<?=$list['title']?></p>
+        <p>
+         <span>日期: <?=$list['date']?></span><br/>
+         <span>主讲: <?=$list['lector']?></span><br/>
+         <span>主题: <?=$list['title']?></span><br/>
+         <span>平均分: <?=$list['AvgScores']?></span><br/>
+         <span>投票人: <?=$list['voters']?></span><br/>
+        </p>
+       <?php }?>
+    </div>
+    <script>
+      var date2Lectors = <?=$date2LectorsJson?>;
+      $('#date').change(function(){
+        var date = $('#date option:selected').val();
+        for(var keys in date2Lectors){
+            if(keys == date) {
+                var selectLector = '<option value="">';
+                for(var key in date2Lectors[keys]){
+                    name = date2Lectors[keys][key];
+                    if(key == 0) {
+                        selectLector += '<option selected value="'+name +'">'+name+'</option>"';
+                    } else {
+                        selectLector += '<option value="'+name +'">'+name+'</option>"';
+                    }
+                }
+                $('#lector').html(selectLector);
+            }
+        }         
+      });
+    </script>
+  </body>
+</html>

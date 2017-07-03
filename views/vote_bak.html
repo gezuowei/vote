@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adsystem &middot; vote</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/vote/static/css/styles.css">
+    <link rel="stylesheet" href="/vote/static/css/bootstrap.min.css">
+    <script src="/vote/static/js/jquery-1.9.1.min.js"></script>
+    <script src="/vote/static/js/bootstrap.min.js"></script>
+    <script src="/vote/static/js/responsive-nav.min.js"></script>
+  </head>
+  <body>
+    <div role="navigation" id="foo" class="nav-collapse">
+      <ul>
+        <li class="active"><a href="/vote/index.php">Home</a></li>
+        <li><a href="/vote/vote.php">vote</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div role="main" class="main">
+      <a href="#nav" class="nav-toggle">Menu</a>
+      <h1>Vote Page </h1>
+
+      <p class="intro">Vote Page </p>
+      <div>
+          <table class="table table-striped table-hover">
+           <thead>
+              <tr>
+                 <th>date</th>
+                 <th>person</th>
+                 <th>title</th>
+                 <th>scores</th>
+                 <th>voters</th>
+                 <th></th>
+              </tr>
+           </thead>
+           <tbody>
+            <?php foreach($lists as $list) { ?>
+              <tr>
+                 <td><?=$list['date']?></td>
+                 <td><?=$list['lector']?></td>
+                 <td><?=$list['title']?></td>
+                 <td><?=$list['AvgScores']?></td>
+                 <th><?=$list['voters']?></th>
+                 <th><button class="btn" data-toggle="modal" data-target="#myModal"> VOTE </button></th>
+              </tr>
+            <?php }?>
+           </tbody>
+        </table>
+      </div>
+    </div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel"> 请投票 </h4>
+         </div>
+         <div class="modal-body" style="font-family:Microsoft YaHei;">
+            总分：<input type="text" id="score"/><br/><br/>
+            请参考以下标准。<br/>
+            1、材料充足度：认为演讲人材料准备充分，对演讲题目各方面材料准备得当,总分30分。<br/>
+            2、讲解流畅性：认为演讲人演练足够充分，在演讲过程中没有太多卡壳,总分30分。<br/>
+            3、气氛把握：认为演讲人可以把所有人带入演讲内容，整个过程都听得聚精会神,总分30分。<br/>
+            4、故事幽默性：可以用故事把原理讲得深入浅出，风趣幽默，或者振奋人心,总分10分。<br/>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> 取消 </button>
+            <button type="button" class="btn btn-primary" id="submit"> 确认 </button>
+         </div>
+      </div>
+   </div>
+</div>
+    <script>
+      var navigation = responsiveNav("foo", {customToggle: ".nav-toggle"});
+      // $(function () { $("[data-toggle='popover']").popover(); });
+      $("#submit").click(function(){
+        var score = $('#score').val();
+        $.ajax({
+            url: "/vote/vote.php", 
+            async: false,
+            data: { "score": score, 'method':'vote', 'lector': 'WangMoumou' },
+            type: "GET",
+            success: function(){
+                window.location.reload(); 
+            }
+        });
+      });
+    </script>
+  </body>
+</html>

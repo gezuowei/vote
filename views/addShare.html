@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adsystem &middot; vote</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/jquery-1.7.2.min.js"></script>
+    <script src="/static/js/responsive-nav.min.js"></script>
+  </head>
+  <body>
+    <div role="navigation" id="foo" class="nav-collapse">
+      <ul>
+        <li><a href="/index.php">showtime简介</a></li>
+        <li><a href="/vote.php">投票</a></li>
+        <li class="active"><a href="/addShare.php">新增分享</a></li>
+      </ul>
+    </div>
+
+    <div role="main" class="main">
+      <a href="#nav" class="nav-toggle">Menu</a>
+      <form action="" method="post" class="addShare">
+        <label>开讲日期: </label> 
+        <input type="date" name="date" min="<?=$today?>" value="<?= $today ?>"></input><br/>
+        <label>主讲人: </label> 
+        <select name="lector" type="text"/>
+          <?php foreach($lectors as $lector){ ?>
+          <option value="<?=$lector?>"><?=$lector?></option>
+          <?php } ?>
+        <select/><br/>
+        <label for="title">主题: </label> 
+        <input type="text" name="title"> </input><br/>
+        <label for="description">内容描述: </label> 
+        <textarea style="margin-top:10px;width:260px;height:80px;" name="description"> </textarea><br/>
+        <input hidden name="method" value="addShare" />
+        <input style="margin-left:20px;margin-top:10px;" type="submit" value="提交" size="10" />
+      </form>
+    </div>
+  </body>
+</html>

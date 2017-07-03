@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adsystem &middot; vote</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/responsive-nav.min.js"></script>
+  </head>
+  <body>
+
+    <div role="navigation" id="foo" class="nav-collapse">
+      <ul>
+        <li class="active"><a href="/index.php">showtime简介</a></li>
+        <li><a href="/vote.php">投票</a></li>
+        <?php if($isSuper) { ?>
+        <li><a href="/addShare.php">新增分享</a></li> <?php } ?>
+      </ul>
+    </div>
+
+    <div role="main" class="main">
+      <a href="#nav" class="nav-toggle">Menu</a>
+      <h1>Adsystem showtime</h1>
+
+      <p class="intro">showtime释义</p>
+
+     <p>
+1、showtime是团队成员展示自我风采，给同事们带来新知识新发现乐趣的分享活动。<br/>
+2、在分享的同时，锻炼表达自己能力，因为表达就是理解。<br/>
+3、我们推崇精心的准备，精彩的观点，独到的理解，有见解的提问。<br/></p>
+
+<p class="intro">showtime原则</p>
+<p>
+1、原则上每个人按照固定顺序每周展示showtime风采<br/>
+2、分享中有参考材料，请在PPT结尾附上<br/>
+3、分享实行打分原则，根据得分进行奖惩，打分规则根据以下<br/>
+    <span>a、材料充足度：认为演讲人材料准备充分，对演讲题目各方面材料准备得当，总分30分。</span><br/>
+    <span>b、讲解流畅性：认为演讲人演练足够充分，在演讲过程中没有太多卡壳，总分30分。</span><br/>
+    <span>c、气氛把握：认为演讲人可以把所有人带入演讲内容，整个过程都听得聚精会神：总分30分。</span><br/>
+    <span>d、故事幽默性：可以用故事把原理讲得深入浅出，风趣幽默，或者振奋人心：总分10分。</span><br/>
+4、showtime获得奖励的原则<br/>
+    <span>a、时长不能短于20分钟（包括提问）。</span><br/>
+    <span>b、总分100分，每次分享投票得分超过70分以上，可获得奖励。</span><br/>
+    <span>c、原则上一次演讲周期每人只能获得不超过一次奖励。</span><br/>
+5、showtime获得惩罚的原则<br/>
+    <span>a、演讲总时长不达标。</span><br/>
+    <span>b、得分低于50分。</span><br/>
+    <span>c、原则上一次演讲周期每人只能获得不超过一次惩罚。</span><br/>
+6、showtime奖励奖品<br/>
+    <span>a、奖品50元以内，可以超过50元，超出部分由自己承担。</span><br/>
+    <span>b、奖品可以小福提前购买，也可以自己买申报。</span><br/>
+7、showtime惩罚奖品<br/>
+    <span>a、受惩罚人需要在下一次演讲之前，再做一次分享。</span><br/>
+    <span>b、如果受罚人依然这次演讲达到奖励标准，依然可以获得奖励。</span><br/>
+8、积分原则<br/>
+    <span>a、实行积分积累制度，每个人的积分，积累到年底。</span><br/>
+    <span>b、年底得分第一的人，可以获得200元的奖品。并发放奖状。</span><br/>
+    <span>c、本年度历史演讲，根据历史表现可重新打分。</span><br/>
+</p>
+<p class="intro">showtime流程</p>
+<p>
+1、按照既定顺序分享，有新人加入，将分享顺序加入到离当前演讲人最远的位置。<br/>
+2、目前顺序为： 廖熙强，盖作为，王东东，陈中开，高奎泰，张兵全，姜理翔，刘佳，石旭。<br/>
+3、演讲采用issue方式，根据报名顺序在项目中建立对应的issue，格式为 > 第xx次：姓名 题目技术分享。<br/>
+4、分享将PPT上传至相应的issue。<br/>
+</p>
+<p class="intro">showtime经费</p><p>
+1、奖励经费在团队经费充足的情况下，从团队经费中出<br/>
+2、如团队经费不足，那就缓缓<br/>
+</p>
+    </div>
+
+    <script>
+      var navigation = responsiveNav("foo", {customToggle: ".nav-toggle"});
+    </script>
+  </body>
+</html>
